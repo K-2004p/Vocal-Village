@@ -1,0 +1,489 @@
+/* Voice Input Specific Styles */
+.voice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #2a6e3f;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #f0f7f3;
+  border-radius: 8px;
+}
+
+.back-button:hover {
+  background-color: #e0ede6;
+}
+
+.voice-language {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.voice-language select {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 2px solid #2a6e3f;
+  background-color: white;
+  color: #2a6e3f;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.voice-interface {
+  background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.voice-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.voice-icon {
+  font-size: 60px;
+  color: #2a6e3f;
+  margin-bottom: 20px;
+}
+
+.voice-header h2 {
+  color: #2a6e3f;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.voice-header p {
+  color: #5d6d5e;
+  font-size: 18px;
+}
+
+/* Big Circular Mic Button */
+.recording-section {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f8fbf9, #eef7f2);
+  border-radius: 20px;
+  position: relative;
+}
+
+.recording-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  font-size: 20px;
+  color: #2a6e3f;
+}
+
+.recording-status i {
+  color: #2a6e3f;
+  animation: pulse 2s infinite;
+}
+
+.mic-container {
+  position: relative;
+  margin: 30px auto;
+  width: 250px;
+  height: 250px;
+}
+
+.mic-circle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2a6e3f, #3a9e5a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 40px rgba(42, 110, 63, 0.3);
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  border: 5px solid rgba(42, 110, 63, 0.2);
+  animation: ringPulse 2s infinite;
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+.record-button {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: white;
+  color: #2a6e3f;
+  border: none;
+  font-size: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  position: relative;
+}
+
+.record-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.record-button.recording {
+  background-color: #e74c3c;
+  color: white;
+  animation: recordingPulse 1.5s infinite;
+}
+
+@keyframes recordingPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7),
+                0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  70% {
+    box-shadow: 0 0 0 30px rgba(231, 76, 60, 0),
+                0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0),
+                0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.timer {
+  font-size: 48px;
+  font-weight: 700;
+  color: #2a6e3f;
+  margin: 30px 0;
+  font-family: monospace;
+}
+
+.recording-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.control-btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+  min-width: 150px;
+  justify-content: center;
+}
+
+.stop-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.stop-btn:hover {
+  background-color: #c0392b;
+}
+
+.play-btn {
+  background-color: #3a86ff;
+  color: white;
+}
+
+.play-btn:hover {
+  background-color: #2a75e6;
+}
+
+.redo-btn {
+  background-color: #e9b44c;
+  color: #1a3c27;
+}
+
+.redo-btn:hover {
+  background-color: #e0a73a;
+}
+
+.control-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Speech to Text Output */
+.speech-output-section {
+  margin-bottom: 40px;
+  padding: 30px;
+  background-color: #f8fbf9;
+  border-radius: 15px;
+}
+
+.speech-output-section h3 {
+  color: #2a6e3f;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+}
+
+.text-display-container {
+  position: relative;
+}
+
+.text-display {
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  min-height: 200px;
+  margin-bottom: 20px;
+  text-align: left;
+  line-height: 1.8;
+  font-size: 18px;
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.text-display:focus {
+  outline: none;
+  border-color: #2a6e3f;
+}
+
+.text-display[contenteditable="true"] {
+  background-color: #ffffe0;
+}
+
+.final-text {
+  color: #1a3c27;
+}
+
+.interim-text {
+  color: #666;
+  font-style: italic;
+}
+
+.edit-text-btn {
+  background-color: #2a6e3f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s;
+}
+
+.edit-text-btn:hover {
+  background-color: #1e5a32;
+}
+
+.confidence-meter {
+  margin-top: 20px;
+}
+
+.confidence-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #2a6e3f;
+}
+
+.confidence-bar {
+  height: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s ease, background-color 0.5s ease;
+  border-radius: 5px;
+}
+
+/* Category Section */
+.category-section {
+  margin-bottom: 40px;
+}
+
+.category-section h3 {
+  color: #2a6e3f;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .mic-container {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .record-button {
+    width: 140px;
+    height: 140px;
+    font-size: 40px;
+  }
+  
+  .pulse-ring {
+    width: 230px;
+    height: 230px;
+  }
+  
+  .control-btn {
+    min-width: 120px;
+    padding: 12px 20px;
+  }
+}
+
+.category-item {
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 25px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.category-item:hover {
+  border-color: #2a6e3f;
+  background-color: rgba(42, 110, 63, 0.05);
+  transform: translateY(-5px);
+}
+
+.category-item.selected {
+  border-color: #2a6e3f;
+  background-color: rgba(42, 110, 63, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(42, 110, 63, 0.1);
+}
+
+.category-item i {
+  font-size: 35px;
+  color: #2a6e3f;
+}
+
+.category-item span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Location Section */
+.location-section {
+  margin-bottom: 40px;
+  padding: 25px;
+  background-color: #f0f7f3;
+  border-radius: 15px;
+}
+
+.location-section h3 {
+  color: #2a6e3f;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+}
+
+.location-info p {
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.location-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Submit Section */
+.submit-section {
+  text-align: center;
+}
+
+.submit-btn-large {
+  background: linear-gradient(135deg, #2a6e3f, #3a9e5a);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 25px 60px;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(42, 110, 63, 0.3);
+}
+
+.submit-btn-large:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(42, 110, 63, 0.4);
+}
+
+.help-text {
+  color: #5d6d5e;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

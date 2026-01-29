@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="app_name">Vocal Village</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Simple Header -->
+  <header class="simple-header">
+    <div class="header-content">
+      <div class="logo">
+        <i class="fas fa-microphone-alt"></i>
+        <h1 data-translate="app_name">Vocal Village</h1>
+      </div>
+      <div class="language-select">
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="hi">हिंदी</option>
+          <option value="ta">தமிழ்</option>
+          <option value="te">తెలుగు</option>
+          <option value="bn">বাংলা</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="welcome-section">
+      <h2 class="welcome-title" data-translate="welcome">Report Village Problems</h2>
+      <p class="welcome-text" data-translate="choose_method">Choose your method - Speak or Type</p>
+      
+      <div class="location-info">
+        <i class="fas fa-location-dot"></i>
+        <span id="currentLocation" data-translate="location_loading">Your Location: Loading...</span>
+        <button id="refreshLocation" class="small-btn" data-translate="refresh_location">
+          <i class="fas fa-redo"></i>
+        </button>
+      </div>
+      
+      <div class="action-buttons">
+        <a href="voice-input.html" class="big-button voice-button">
+          <i class="fas fa-microphone"></i>
+          <span data-translate="speak_btn">Speak Your Problem</span>
+          <small data-translate="speak_now">Speak Now</small>
+        </a>
+        
+        <button id="textInputBtn" class="big-button text-button">
+          <i class="fas fa-keyboard"></i>
+          <span data-translate="type_btn">Type Your Problem</span>
+          <small>Type to report</small>
+        </button>
+      </div>
+      
+      <div class="login-section">
+        <p data-translate="login_prompt">Login for better experience</p>
+        <div class="login-options">
+          <button id="digilockerLogin" class="login-btn digilocker-btn">
+            <i class="fas fa-id-card"></i>
+            <span data-translate="digilocker_login">Login with DigiLocker</span>
+          </button>
+          <button id="manualAadhaarBtn" class="login-btn aadhaar-btn">
+            <i class="fas fa-key"></i>
+            <span data-translate="manual_aadhaar">Enter Aadhaar Manually</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Text Input Modal -->
+    <div id="textInputModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-translate="type_btn">Type Your Problem</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="problem-category">
+            <label data-translate="problem_type">Problem Type:</label>
+            <select id="problemType">
+              <option value="" data-translate="select_type">Select...</option>
+              <option value="water" data-translate="water">Water Problem</option>
+              <option value="road" data-translate="road">Road/Bridge</option>
+              <option value="electricity" data-translate="electricity">Electricity</option>
+              <option value="health" data-translate="health">Health Center</option>
+              <option value="education" data-translate="education">School Problem</option>
+              <option value="agriculture" data-translate="agriculture">Agriculture</option>
+              <option value="animal" data-translate="animal">Animal Issue</option>
+              <option value="other" data-translate="other">Other</option>
+            </select>
+          </div>
+          
+          <div class="text-input-area">
+            <label>Describe your problem in detail:</label>
+            <textarea id="problemText" rows="6" placeholder="Type here or use speech to text..."></textarea>
+            <button id="voiceToTextBtn" class="voice-text-btn">
+              <i class="fas fa-microphone"></i> <span data-translate="speak_now">Speak Now</span>
+            </button>
+          </div>
+          
+          <div class="location-confirm">
+            <p><i class="fas fa-location-dot"></i> <span data-translate="location">Location:</span> <span id="modalLocation">Loading...</span></p>
+            <button id="manualLocationBtn" class="small-btn" data-translate="manual_location">
+              <i class="fas fa-map-marker-alt"></i>
+            </button>
+          </div>
+          
+          <button id="submitTextReport" class="submit-btn">
+            <i class="fas fa-paper-plane"></i> <span data-translate="submit">Submit Report</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aadhaar Login Modal -->
+    <div id="aadhaarModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 data-translate="manual_aadhaar">Enter Aadhaar Manually</h3>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="aadhaar-input">
+            <label data-translate="aadhaar_input">Enter 12-digit Aadhaar Number:</label>
+            <input type="text" id="aadhaarNumber" maxlength="12" placeholder="XXXX XXXX XXXX" pattern="[0-9]{12}">
+            <p class="input-help">Enter without spaces</p>
+          </div>
+          <div class="modal-buttons">
+            <button id="verifyAadhaar" class="submit-btn" data-translate="verify">
+              <i class="fas fa-check"></i> Verify
+            </button>
+            <button id="cancelAadhaar" class="cancel-btn" data-translate="cancel">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Simple Footer -->
+
+  <footer class="simple-footer">
+    <div class="admin-link" style="margin-top: 20px; text-align: center;">
+    <a href="admin/admin-login.html" style="color: white; text-decoration: none; font-size: 14px;">
+        <i class="fas fa-shield-alt"></i> Admin Portal
+    </a>
+</div>
+    <div class="footer-content">
+      <p data-translate="every_voice_matters">Every Voice Matters</p>
+      <p class="help-text">
+        <i class="fas fa-phone"></i> <span data-translate="help_line">Help Line: 1800-XXX-XXXX</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/language.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/location.js"></script>
+</body>
+</html>

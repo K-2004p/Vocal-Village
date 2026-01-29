@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Vocal Village</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a3c27 0%, #2a6e3f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #2a6e3f 0%, #3a9e5a 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .login-header i {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .login-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .login-body {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2a6e3f;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #2a6e3f;
+            outline: none;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #2a6e3f 0%, #3a9e5a 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #2a6e3f;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 100%;
+            }
+            
+            .login-header {
+                padding: 30px 20px;
+            }
+            
+            .login-body {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <i class="fas fa-shield-alt"></i>
+            <h1>Admin Portal</h1>
+            <p>Vocal Village - Platform Administration</p>
+        </div>
+        
+        <div class="login-body">
+            <div class="form-group">
+                <label for="adminUsername"><i class="fas fa-user"></i> Username</label>
+                <input type="text" id="adminUsername" placeholder="Enter admin username">
+            </div>
+            
+            <div class="form-group">
+                <label for="adminPassword"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter admin password">
+            </div>
+            
+            <div id="loginError" class="error-message">
+                Invalid credentials. Please try again.
+            </div>
+            
+            <button id="adminLoginBtn" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+            </button>
+            
+            <div class="back-link">
+                <a href="../index.html">
+                    <i class="fas fa-arrow-left"></i> Back to Main Site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('adminLoginBtn').addEventListener('click', function() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            const loginBtn = document.getElementById('adminLoginBtn');
+            
+            // Basic validation
+            if (!username || !password) {
+                errorDiv.textContent = 'Please enter both username and password';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            // Show loading
+            loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+            loginBtn.disabled = true;
+            
+            // Simulate API call (in production, this would be a real API)
+            setTimeout(() => {
+                // Demo credentials
+                const validCredentials = {
+                    username: 'admin',
+                    password: 'admin123',
+                    username2: 'villageadmin',
+                    password2: 'village@2024'
+                };
+                
+                if ((username === validCredentials.username && password === validCredentials.password) ||
+                    (username === validCredentials.username2 && password === validCredentials.password2)) {
+                    
+                    // Store admin session
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    localStorage.setItem('adminUsername', username);
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                    
+                } else {
+                    errorDiv.textContent = 'Invalid username or password';
+                    errorDiv.style.display = 'block';
+                    loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login to Dashboard';
+                    loginBtn.disabled = false;
+                }
+            }, 1500);
+        });
+        
+        // Allow Enter key to submit
+        document.getElementById('adminPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('adminLoginBtn').click();
+            }
+        });
+    </script>
+</body>
+</html>

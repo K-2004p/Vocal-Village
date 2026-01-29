@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-translate="speak_btn">Speak Your Problem - Vocal Village</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/voice-input.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="voice-container">
+    <!-- Back Button -->
+    <a href="index.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> <span data-translate="back">Back</span>
+    </a>
+    
+    <!-- Language Selector -->
+    <div class="voice-language">
+      <select id="voiceLanguageSelect">
+        <option value="en">English</option>
+        <option value="hi">हिंदी</option>
+        <option value="ta">தமிழ்</option>
+        <option value="te">తెలుగు</option>
+      </select>
+    </div>
+    
+    <!-- Main Voice Interface -->
+    <div class="voice-interface">
+      <div class="voice-header">
+        <i class="fas fa-microphone-alt voice-icon"></i>
+        <h2 data-translate="speak_btn">Speak Your Problem</h2>
+        <p data-translate="speak_now">Press and hold the mic button, then speak</p>
+      </div>
+      
+      <div class="recording-section">
+        <div class="recording-status" id="recordingStatus">
+          <i class="fas fa-circle"></i>
+          <span data-translate="ready">Ready to record</span>
+        </div>
+        
+        <!-- Big Circular Mic Button -->
+        <div class="mic-container">
+          <div class="mic-circle">
+            <button class="record-button" id="recordButton">
+              <i class="fas fa-microphone"></i>
+            </button>
+            <div class="pulse-ring"></div>
+          </div>
+        </div>
+        
+        <div class="timer" id="timer">00:00</div>
+        
+        <!-- Recording Controls -->
+        <div class="recording-controls">
+          <button class="control-btn stop-btn" id="stopButton" disabled>
+            <i class="fas fa-stop"></i> <span data-translate="stop">Stop</span>
+          </button>
+          <button class="control-btn play-btn" id="playButton" disabled>
+            <i class="fas fa-play"></i> <span data-translate="listen">Listen</span>
+          </button>
+          <button class="control-btn redo-btn" id="recordAgainButton" disabled>
+            <i class="fas fa-redo"></i> <span data-translate="rerecord">Re-record</span>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Speech to Text Output -->
+      <div class="speech-output-section">
+        <h3><i class="fas fa-text-width"></i> <span data-translate="converted_text">Speech to Text Output</span></h3>
+        <div class="text-display-container">
+          <div class="text-display" id="convertedText" contenteditable="false">
+            Your speech will be converted to text here...
+          </div>
+          <button class="edit-text-btn" id="editTextBtn">
+            <i class="fas fa-edit"></i> <span data-translate="edit_text">Edit Text</span>
+          </button>
+        </div>
+        <div class="confidence-meter">
+          <div class="confidence-label">Confidence: <span id="confidenceScore">0%</span></div>
+          <div class="confidence-bar">
+            <div class="confidence-fill" id="confidenceFill"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Problem Category -->
+      <div class="category-section">
+        <h3><i class="fas fa-tags"></i> <span data-translate="problem_type">Select Problem Type</span></h3>
+        <div class="category-grid">
+          <div class="category-item" data-category="water">
+            <i class="fas fa-tint"></i>
+            <span data-translate="water">Water</span>
+          </div>
+          <div class="category-item" data-category="road">
+            <i class="fas fa-road"></i>
+            <span data-translate="road">Road</span>
+          </div>
+          <div class="category-item" data-category="electricity">
+            <i class="fas fa-bolt"></i>
+            <span data-translate="electricity">Electricity</span>
+          </div>
+          <div class="category-item" data-category="health">
+            <i class="fas fa-hospital"></i>
+            <span data-translate="health">Health</span>
+          </div>
+          <div class="category-item" data-category="education">
+            <i class="fas fa-school"></i>
+            <span data-translate="education">Education</span>
+          </div>
+          <div class="category-item" data-category="agriculture">
+            <i class="fas fa-tractor"></i>
+            <span data-translate="agriculture">Agriculture</span>
+          </div>
+          <div class="category-item" data-category="animal">
+            <i class="fas fa-cow"></i>
+            <span data-translate="animal">Animal</span>
+          </div>
+          <div class="category-item" data-category="other">
+            <i class="fas fa-question-circle"></i>
+            <span data-translate="other">Other</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Location Section -->
+      <div class="location-section">
+        <h3><i class="fas fa-location-dot"></i> <span data-translate="location">Your Location</span></h3>
+        <div class="location-info">
+          <p id="voiceLocation" data-translate="location_loading">Loading your location...</p>
+          <div class="location-buttons">
+            <button id="refreshVoiceLocation" class="small-btn" data-translate="refresh_location">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+            <button id="manualVoiceLocation" class="small-btn" data-translate="manual_location">
+              <i class="fas fa-map-marker-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Submit Section -->
+      <div class="submit-section">
+        <button id="submitVoiceReport" class="submit-btn-large">
+          <i class="fas fa-paper-plane"></i> <span data-translate="submit">Submit Report</span>
+        </button>
+        <p class="help-text">
+          <i class="fas fa-info-circle"></i> <span data-translate="next_steps">Your report will be sent to local authorities</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content success-modal">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3 data-translate="success">Report Submitted Successfully!</h3>
+      <p class="reference-number">
+        <span data-translate="reference">Reference Number:</span> <strong id="reportReference">VV-1234</strong>
+      </p>
+      <p class="success-message" data-translate="next_steps">
+        Our team will take action soon. You can check status using this reference number.
+      </p>
+      <div class="success-buttons">
+        <a href="index.html" class="success-btn">
+          <i class="fas fa-home"></i> <span data-translate="home">Home</span>
+        </a>
+        <button id="newReportBtn" class="success-btn">
+          <i class="fas fa-plus"></i> <span data-translate="new_report">New Report</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/language.js"></script>
+  <script src="assets/js/location.js"></script>
+  <script src="assets/js/speech-to-text.js"></script>
+  <script src="assets/js/voice-input.js"></script>
+</body>
+</html>
